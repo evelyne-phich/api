@@ -1,17 +1,37 @@
-const express = require("express");
 const bodyParser = require("body-parser");
+const express = require("express");
+const mongoose = require("mongoose");
+
+const { initModels } = require("./domains");
+const { initResources } = require("./resources");
 
 const PORT = process.env.PORT || 3002;
 
-const app = express();
+const main = async () => {
+  await mongoose.connect("mongodb://localhost/api", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false,
+    useCreateIndex: true,
+  });
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.json());
+  const models = initModels(mongoose);
 
-app.get("/", async (request, response) => {
-  response.send({ status: "up" });
-});
+  // recipe.save();
 
-app.listen(PORT, () => {
-  console.log(`The server is listening on: http://localhost:${PORT}`);
-});
+  const app = express();
+
+  app.use(bodyParser.urlencoded({ extended: false }));
+  app.use(express.json());
+  app.get("/", async (request, response) => {
+    response.send({ status: "up" });
+  });
+
+  initResources(app, models);
+
+  app.listen(PORT, () => {
+    console.log(`The server is listening on: http://localhost:${PORT}`);
+  });
+};
+
+main();
