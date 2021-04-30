@@ -1,6 +1,7 @@
 const recipeResource = (app, models) => {
   app.get("/recipe", async (request, response) => {
-    const recipes = [];
+    const { Recipe } = models;
+    const recipes = await Recipe.find({});
 
     response.send(recipes);
   });
@@ -9,7 +10,19 @@ const recipeResource = (app, models) => {
     const { Recipe } = models;
     const { name } = request.body;
 
-    response.send({ name });
+    const recipe = new Recipe({
+      createdAt: new Date(),
+      name,
+    });
+
+    recipe.save((err) => {
+      if (err) {
+        response.send({ error });
+        return;
+      }
+
+      response.send({ recipe });
+    });
   });
 };
 

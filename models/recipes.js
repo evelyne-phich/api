@@ -3,6 +3,7 @@ const { Schema } = require("mongoose");
 const recipeSchema = new Schema({
   id: Number,
   category: String,
+  createdAt: Date,
   name: String,
   thumbnailPictureUrl: String,
   pictureUrl: String,
