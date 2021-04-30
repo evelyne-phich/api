@@ -5,12 +5,14 @@
 - mongoose
 - dotenv
 - express
+- docker
 
 ## Road Map
 
-- [ ] Save recipes
-- [ ] Log for API calls
-- [ ] List all recipes
+- [x] Save recipes
+- [x] Log for API calls
+- [x] List all recipes
+- [ ] Add import syntax
 - [ ] Update a recipe
 - [ ] Add typescript
 - [ ] Add authentication
