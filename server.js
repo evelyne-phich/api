@@ -3,6 +3,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 
+const { expressLogger } = require("./middlewares");
 const { initModels } = require("./models");
 const { initResources } = require("./resources");
 
@@ -18,8 +19,6 @@ const main = async () => {
 
   const models = initModels(mongoose);
 
-  // recipe.save();
-
   const app = express();
 
   // app.use(
@@ -29,6 +28,7 @@ const main = async () => {
   // );
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(express.json());
+  app.use(expressLogger(false));
   app.get("/", async (request, response) => {
     response.send({ status: "up" });
   });
