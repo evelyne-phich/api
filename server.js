@@ -3,13 +3,13 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 
-const { initModels } = require("./domains");
+const { initModels } = require("./models");
 const { initResources } = require("./resources");
 
-const PORT = process.env.PORT || 8081;
+const PORT = process.env.PORT || 3001;
 
 const main = async () => {
-  await mongoose.connect("mongodb://localhost/api", {
+  await mongoose.connect("mongodb://localhost:27017/cup-of-tea", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,
@@ -22,11 +22,11 @@ const main = async () => {
 
   const app = express();
 
-  app.use(
-    cors({
-      origin: "http://localhost:3000",
-    })
-  );
+  // app.use(
+  //   cors({
+  //     origin: "http://localhost:3000",
+  //   })
+  // );
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(express.json());
   app.get("/", async (request, response) => {
