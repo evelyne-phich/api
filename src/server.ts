@@ -1,11 +1,11 @@
-const bodyParser = require("body-parser");
-const express = require("express");
-const mongoose = require("mongoose");
-const cors = require("cors");
+import bodyParser from "body-parser";
+// import cors from "cors";
+import express from "express";
+import mongoose from "mongoose";
 
-const { expressLogger } = require("./middlewares");
-const { initModels } = require("./models");
-const { initResources } = require("./resources");
+import { expressLogger } from "./middlewares";
+import { initModels } from "../models";
+import { initResources } from "../resources";
 
 const PORT = process.env.PORT || 3001;
 
