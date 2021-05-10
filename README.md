@@ -7,6 +7,11 @@
 - express
 - docker
 
+## What's been developed
+
+- Express Logger Middleware
+- Script to convert an GitHub issue into a pull request
+
 ## Road Map
 
 - [x] Save recipes
