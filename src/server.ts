@@ -1,11 +1,12 @@
 import bodyParser from "body-parser";
 // import cors from "cors";
-import express from "express";
+import express, { Request, Response, NextFunction } from "express";
 import mongoose from "mongoose";
 
 import { expressLogger } from "./middlewares";
-import { initModels } from "../models";
-import { initResources } from "../resources";
+import { initModels } from "./models";
+import { MessageModel } from "./models/messages";
+import { initResources } from "./resources";
 
 const PORT = process.env.PORT || 3001;
 
@@ -34,7 +35,7 @@ const main = async () => {
   });
 
   /* DRAFT FOR SSE */
-  let clients = [];
+  let clients: Array<any> = [];
   const emitters = [];
   const messages = [
     {
@@ -49,7 +50,11 @@ const main = async () => {
     },
   ];
 
-  function eventsHandler(request, response, next) {
+  function eventsHandler(
+    request: Request,
+    response: Response,
+    next: NextFunction
+  ) {
     const headers = {
       "Content-Type": "text/event-stream",
       Connection: "keep-alive",
@@ -76,15 +81,11 @@ const main = async () => {
     });
   }
 
-  function sendEventsToAll(message) {
-    console.log({
-      clients1: clients,
-      write: `data: ${JSON.stringify(message)}\n\n`,
-    });
+  const publishMessageToAllClients = (message: MessageModel) => {
     clients.forEach((client) =>
       client.response.write(`data: ${JSON.stringify(message)}\n\n`)
     );
-  }
+  };
 
   app.get("/events", eventsHandler);
 
@@ -117,7 +118,7 @@ const main = async () => {
     messages.push(message);
     // response.send({ message });
     response.json(newMessage);
-    return sendEventsToAll(newMessage);
+    return publishMessageToAllClients(newMessage);
   });
 
   /* END OF DRAFT */

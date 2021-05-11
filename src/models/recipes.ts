@@ -1,6 +1,6 @@
-const { Schema } = require("mongoose");
+import { Schema } from "mongoose";
 
-const recipeSchema = new Schema({
+export const recipeSchema = new Schema({
   id: Number,
   category: String,
   createdAt: Date,
@@ -14,7 +14,3 @@ const recipeSchema = new Schema({
   ingredients: [String],
   instructions: [String],
 });
-
-module.exports = {
-  recipeSchema,
-};

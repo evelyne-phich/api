@@ -1,4 +1,8 @@
-const recipeResource = (app, models) => {
+import { Express } from "express";
+
+import { APIModels } from "../models";
+
+export const recipeResource = (app: Express, models: APIModels) => {
   app.get("/recipe", async (request, response) => {
     const { Recipe } = models;
     const recipes = await Recipe.find({});
@@ -15,8 +19,8 @@ const recipeResource = (app, models) => {
       name,
     });
 
-    recipe.save((err) => {
-      if (err) {
+    recipe.save((error: any) => {
+      if (error) {
         response.send({ error });
         return;
       }
@@ -24,8 +28,4 @@ const recipeResource = (app, models) => {
       response.send({ recipe });
     });
   });
-};
-
-module.exports = {
-  recipeResource,
 };
