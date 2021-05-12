@@ -66,7 +66,7 @@ const main = async () => {
   console.log("## Application");
   console.log("Copy the following command:");
   console.log(
-    `gh api repos/evelyne-phich/les-bonnes-recettes-d-evy/pulls -f head=${currentBranch.branchName} -f base=main -F issue=${currentBranch.issueId}`
+    `gh api repos/evelyne-phich/api/pulls -f head=${currentBranch.branchName} -f base=main -F issue=${currentBranch.issueId}`
   );
 };
 
