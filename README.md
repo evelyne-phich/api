@@ -2,9 +2,12 @@
 
 ## What's been used
 
-- mongoose
-- dotenv
-- express
+- typescript
+- node.js
+  - mongoose
+  - dotenv
+  - express
+    - express-validator
 - docker
 
 ## What's been developed
@@ -17,8 +20,9 @@
 - [x] Save recipes
 - [x] Log for API calls
 - [x] List all recipes
-- [ ] Add import syntax
+- [x] Add import syntax
+- [x] Add typescript
+- [ ] Drop a recipe
 - [ ] Update a recipe
-- [ ] Add typescript
 - [ ] Add authentication
 - [ ] ...
