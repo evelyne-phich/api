@@ -10,7 +10,7 @@ export const recipeDataMapper = {
     callback: (error: Error, result: QueryResult) => void
   ) => {
     const query = `
-    SELECT "recipe"."id", "recipe"."pictureUrl", "recipe"."category", "recipe"."name"
+    SELECT "recipe"."id", "recipe"."pictureUrl", "recipe"."category", "recipe"."name", "recipe"."country"
     FROM "recipe"
     WHERE ("recipe"."category" = $1 OR $1 IS NULL)
     AND ("recipe"."country" = $2 OR $2 IS NULL)
