@@ -1,7 +1,7 @@
 export type Category = "Entrée" | "Plat" | "Dessert";
 
 export type Recipe = {
-  id: string;
+  id: number;
   pictureUrl: string;
   category: Category;
   name: string;

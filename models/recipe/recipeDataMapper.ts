@@ -19,7 +19,7 @@ export const recipeDataMapper = {
     client.query(query, [category, country, name], callback);
   },
   getRecipeById: (
-    id: string,
+    id: number,
     callback: (error: Error, result: QueryResult) => void
   ) => {
     const query = `SELECT * FROM "recipe" WHERE "recipe"."id" = $1`;

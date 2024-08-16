@@ -25,7 +25,7 @@ export const recipeController = {
       }
     );
   },
-  getRecipeById: (req: Request<{ id: string }, {}, {}, {}>, res: Response) => {
+  getRecipeById: (req: Request<{ id: number }, {}, {}, {}>, res: Response) => {
     const id = req.params.id;
 
     recipeDataMapper.getRecipeById(id, (_: Error, result: QueryResult) => {
