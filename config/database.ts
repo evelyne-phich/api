@@ -1,4 +1,5 @@
 import { Client } from "pg";
+import { env } from "./env";
 
 type DevConfig = {
   host?: string;
@@ -9,11 +10,11 @@ type DevConfig = {
 };
 
 const devConfig: DevConfig = {
-  host: process.env.PG_HOST,
-  port: Number(process.env.PG_PORT),
-  user: process.env.PG_USER,
-  password: process.env.PG_PASSWORD,
-  database: process.env.PG_DATABASE,
+  host: env.PG_HOST,
+  port: env.PG_PORT,
+  user: env.PG_USER,
+  password: env.PG_PASSWORD,
+  database: env.PG_DATABASE,
 };
 
 export const client = new Client(devConfig);
