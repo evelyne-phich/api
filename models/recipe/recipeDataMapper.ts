@@ -3,7 +3,7 @@ import { QueryResult } from "pg";
 import { Category } from "./recipeModel";
 
 export const recipeDataMapper = {
-  getRecipes: (
+  getRecipesCards: (
     category: Category | null,
     country: string | null,
     name: string | null,

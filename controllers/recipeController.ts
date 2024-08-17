@@ -16,12 +16,12 @@ type RecipeQuery = {
 };
 
 export const recipeController = {
-  getRecipes: (req: Request<{}, {}, {}, RecipeQuery>, res: Response) => {
+  getRecipesCards: (req: Request<{}, {}, {}, RecipeQuery>, res: Response) => {
     const category = req.query.category || null;
     const country = req.query.country || null;
     const name = req.query.name || null;
 
-    recipeDataMapper.getRecipes(
+    recipeDataMapper.getRecipesCards(
       category,
       country,
       name,
