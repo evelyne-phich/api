@@ -1,7 +1,13 @@
 import { Request, Response } from "express";
 import { QueryResult } from "pg";
 import { recipeDataMapper } from "../models/recipe/recipeDataMapper";
-import { Category } from "../models/recipe/recipeModel";
+import {
+  Category,
+  GetCategories,
+  GetCountries,
+  GetRecipeById,
+  GetRecipes,
+} from "../models/recipe/recipeModel";
 
 type RecipeQuery = {
   category?: Category;
@@ -20,7 +26,7 @@ export const recipeController = {
       country,
       name,
       (_: Error, result: QueryResult) => {
-        const recipes = result.rows;
+        const recipes: GetRecipes = result.rows;
         return res.send(recipes);
       }
     );
@@ -36,19 +42,21 @@ export const recipeController = {
         return res.status(404).send("L'id de la recette n'existe pas.");
       }
 
-      const recipe = result.rows[0];
+      const recipe: GetRecipeById = result.rows[0];
       return res.send(recipe);
     });
   },
   getCategories: (_: Request<{}, {}, {}>, res: Response) => {
     recipeDataMapper.getCategories((_: Error, result: QueryResult) => {
-      const categories = result.rows.map((item) => item.category);
+      const categories: GetCategories = result.rows.map(
+        (item) => item.category
+      );
       return res.send(categories);
     });
   },
   getCountries: (_: Request<{}, {}, {}>, res: Response) => {
     recipeDataMapper.getCountries((_: Error, result: QueryResult) => {
-      const countries = result.rows.map((item) => item.country);
+      const countries: GetCountries = result.rows.map((item) => item.country);
       return res.send(countries);
     });
   },
