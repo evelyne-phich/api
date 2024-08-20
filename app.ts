@@ -9,7 +9,7 @@ import { env } from "./config/env";
 const app = express();
 const port = 3000;
 
-const allowedOrigins: string[] = [];
+const allowedOrigins: string[] = ["https://on-cuisine-quoi.vercel.app"];
 if (env.NODE_ENV === "local") {
   allowedOrigins.push("http://localhost:5173");
 }
